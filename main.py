@@ -110,7 +110,7 @@ def pick_items(source: set[str], count: int) -> set[str]:
     return results
 
 
-def print_results(results: set[str]) -> None:
+def print_results(results: set[str], total_count: int, requested_count: int) -> None:
     """
     Функция print_results:
     Выводит пронумерованный список сгенерированных пословиц в терминал.
@@ -128,6 +128,9 @@ def print_results(results: set[str]) -> None:
         table_data.append([sequence_number, proverb])
     print("\n        Сгенерированные пословицы:")
     print(tabulate(table_data, headers=headers, tablefmt="fancy_grid"))
+    print(
+        f"\nСтатистика: всего комбинаций — {total_count}, запрошено — {requested_count}, показано — {len(results)}"
+    )
 
 
 def main() -> None:
@@ -160,7 +163,7 @@ def main() -> None:
 
     requested_proverbs = pick_items(all_combinations, requested)
 
-    print_results(requested_proverbs)
+    print_results(requested_proverbs, limit, requested)
     print("")
 
 
